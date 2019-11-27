@@ -117,7 +117,7 @@ module Authlogic
         # `find_by_single_access_token`.
         def search_for_record(*args)
           search_scope.scoping do
-            klass.send(*args)
+            klass.unscoped.send(*args)
           end
         end
 
@@ -129,7 +129,7 @@ module Authlogic
             scope[:find_options]
           else
             conditions = scope[:find_options] && scope[:find_options][:conditions] || {}
-            klass.send(:where, conditions)
+            klass.unscoped.where(conditions)
           end
         end
       end

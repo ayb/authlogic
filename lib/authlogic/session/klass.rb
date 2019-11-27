@@ -21,7 +21,7 @@ module Authlogic
         # * <tt>Accepts:</tt> an ActiveRecord class
         def authenticate_with(klass)
           @klass_name = klass.name
-          @klass = klass
+          @klass = klass.unscoped
         end
         alias_method :authenticate_with=, :authenticate_with
 
